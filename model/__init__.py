@@ -238,6 +238,8 @@ class BaseModel:
 
     def get_count(self, where={}, other=""):
         tmp_data = self.select(where, other=other, fields="count(id) as count")
+        if len(tmp_data) == 0:
+            return 0
         return tmp_data[0]["count"]
 
     def get_page_data(self, where={}, other="", page_num=1, page_count=10):
